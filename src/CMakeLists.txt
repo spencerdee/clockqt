@@ -1,0 +1,1 @@
+target_sources(clockqt PRIVATE ${PROJECT_SOURCES})
