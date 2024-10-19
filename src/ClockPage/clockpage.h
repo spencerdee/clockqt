@@ -3,9 +3,12 @@
 
 #include <QWidget>
 #include <QTimer>
-#include <ctime>
+#include <qfont.h>
 #include <iomanip>
-#include <iostream>
+#include <sstream>
+#include "common.h"
+#include "ui_clockpage.h"
+
 
 namespace Ui {
 class ClockPage;
@@ -18,15 +21,19 @@ class ClockPage : public QWidget
 public:
     ClockPage(QWidget *parent = nullptr);
     virtual ~ClockPage();
+    Ui::ClockPage* getUi();
+    void setInterval(int ms);
+    void updateFont();
 
 private slots:
-    void updateCount();
-    void alarmPressed();
-    void menuPressed();
+    void updateTime();
 
 private:
     Ui::ClockPage *ui;
     QTimer* timer;
-    QString count;
+    QString time;
+    QString date;
+    QFont font;
+    bool clockOn;
 };
 #endif // CLOCKPAGE_H

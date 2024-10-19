@@ -2,17 +2,19 @@
 #include <QPainter>
 #include <QDebug>
 
-TickerPage::TickerPage(QWidget *parent) :
+TickerPage::TickerPage(QWidget *parent, QString text) :
     QWidget(parent), scrollPos(0)
 {
+    fields = QMap<QString, QString>();
     timer = new QTimer();
     staticText.setTextFormat(Qt::PlainText);
     setFixedHeight(fontMetrics().height());
     leftMargin = width();
-    setSeparator("   ");
+    setSeparator(" ");
     connect(timer, &QTimer::timeout, this, &TickerPage::timeout);
     timer->setInterval(50);
     timer->start();
+    setText(text);
 }
 
 TickerPage::~TickerPage() {
@@ -29,6 +31,10 @@ void TickerPage::setText(QString text)
     _text = text;
     updateText();
     update();
+}
+
+void TickerPage::setField(QString key, QString val) {
+    fields[key] = val;
 }
 
 QString TickerPage::separator() const
@@ -84,8 +90,14 @@ void TickerPage::paintEvent(QPaintEvent*)
 
 void TickerPage::timeout()
 {
-    qDebug() << QString("%1").arg(scrollPos);
     scrollPos = (scrollPos + 2);
+    QString toTicker = "";
+    for (QString key : fields.keys()) {
+        if (fields[key] != "") {
+            toTicker += fields[key] + " | ";
+        }
+    }
+    setText(toTicker);
     update();
     // setText(QString("Scroll Pos = %1 | Width = %2").arg(scrollPos).arg(width()));
 }

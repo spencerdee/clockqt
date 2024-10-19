@@ -16,12 +16,14 @@ class TickerPage : public QWidget
     Q_PROPERTY(QString separator READ separator WRITE setSeparator)
 
 public:
-    TickerPage(QWidget *parent = nullptr);
+    TickerPage(QWidget *parent = nullptr, QString text = "");
     virtual ~TickerPage();
 
 public slots:
     QString text() const;
     void setText(QString text);
+
+    void setField(QString key, QString val);
 
     QString separator() const;
     void setSeparator(QString separator);
@@ -31,6 +33,7 @@ protected:
 
 private:
     void updateText();
+    QMap<QString, QString> fields;
     QString _text;
     QString _separator;
     QStaticText staticText;

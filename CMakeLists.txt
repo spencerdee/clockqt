@@ -24,6 +24,18 @@ set(PROJECT_SOURCES
         src/TickerPage/tickerpage.cpp
         src/TickerPage/tickerpage.h
         src/TickerPage/tickerpage.ui
+        src/AlarmPage/alarmpage.cpp
+        src/AlarmPage/alarmpage.h
+        src/AlarmPage/alarmpage.ui
+        src/MenuPage/menupage.cpp
+        src/MenuPage/menupage.h
+        src/MenuPage/menupage.ui
+        src/BackgroundPage/backgroundpage.cpp
+        src/BackgroundPage/backgroundpage.h
+        src/BackgroundPage/backgroundpage.ui
+
+        src/Common/common.h
+        src/Common/common.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -71,6 +83,10 @@ target_include_directories(clockqt PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MainWindow
     ${CMAKE_CURRENT_SOURCE_DIR}/src/ClockPage
     ${CMAKE_CURRENT_SOURCE_DIR}/src/TickerPage
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/AlarmPage
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MenuPage
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Common
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/BackgroundPage
 )
 
 # changed runtime and library destination from
@@ -82,6 +98,8 @@ install(TARGETS clockqt
     LIBRARY DESTINATION ${CMAKE_BUILD_EXE_DIR}
     RUNTIME DESTINATION ${CMAKE_BUILD_EXE_DIR}
 )
+
+file(COPY ${CMAKE_SOURCE_DIR}/src/images DESTINATION ${CMAKE_BUILD_EXE_DIR}/)
 
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(clockqt)
