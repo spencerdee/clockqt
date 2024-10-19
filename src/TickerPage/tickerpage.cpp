@@ -5,7 +5,7 @@
 TickerPage::TickerPage(QWidget *parent, QString text) :
     QWidget(parent), scrollPos(0)
 {
-    fields = QMap<QString, QString>();
+    tickerFields = QMap<QString, QString>();
     timer = new QTimer();
     staticText.setTextFormat(Qt::PlainText);
     setFixedHeight(fontMetrics().height());
@@ -34,7 +34,7 @@ void TickerPage::setText(QString text)
 }
 
 void TickerPage::setField(QString key, QString val) {
-    fields[key] = val;
+    tickerFields[key] = val;
 }
 
 QString TickerPage::separator() const
@@ -92,9 +92,9 @@ void TickerPage::timeout()
 {
     scrollPos = (scrollPos + 2);
     QString toTicker = "";
-    for (QString key : fields.keys()) {
-        if (fields[key] != "") {
-            toTicker += fields[key] + " | ";
+    for (QString key : tickerFields.keys()) {
+        if (tickerFields[key] != "") {
+            toTicker += tickerFields[key] + " | ";
         }
     }
     setText(toTicker);

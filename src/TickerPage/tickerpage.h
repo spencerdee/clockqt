@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QStaticText>
 #include <QTimer>
+#include <QMap>
 
 namespace Ui {
 class TickerPage;
@@ -33,7 +34,7 @@ protected:
 
 private:
     void updateText();
-    QMap<QString, QString> fields;
+    QMap<QString, QString> tickerFields;
     QString _text;
     QString _separator;
     QStaticText staticText;

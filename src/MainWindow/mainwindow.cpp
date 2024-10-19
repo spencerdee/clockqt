@@ -38,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(bp->getUi()->clock, &QPushButton::clicked, this, &MainWindow::clockPressed);
 
     for (QPushButton* button : bp->getButtons()) {
-        connect(button, &QPushButton::clicked, this, [this, button](){setBackground(QString("images/" + button->text()));});
+        connect(button, &QPushButton::clicked, this, [this, button](){setBackground(QString("Debug/images/" + button->text()));});
     }
     addToTicker("Alarm", QString("Alarm is " + QString(ap->getAlarmStatus() ? "ON" : "OFF") + " and set to " + ap->getAlarmTime()));
 }
