@@ -1,6 +1,6 @@
 #include "tickerpage.h"
-#include <QPainter>
 #include <QDebug>
+#include <QPainter>
 
 TickerPage::TickerPage(QWidget *parent, QString text) :
     QWidget(parent), scrollPos(0)
@@ -12,7 +12,7 @@ TickerPage::TickerPage(QWidget *parent, QString text) :
     leftMargin = width();
     setSeparator(" ");
     connect(timer, &QTimer::timeout, this, &TickerPage::timeout);
-    timer->setInterval(50);
+    timer->setInterval(100);
     timer->start();
     setText(text);
 }
@@ -90,7 +90,7 @@ void TickerPage::paintEvent(QPaintEvent*)
 
 void TickerPage::timeout()
 {
-    scrollPos = (scrollPos + 2);
+    scrollPos = (scrollPos + 1);
     QString toTicker = "";
     for (QString key : tickerFields.keys()) {
         if (tickerFields[key] != "") {

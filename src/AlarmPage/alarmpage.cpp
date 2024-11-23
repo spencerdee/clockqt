@@ -81,9 +81,9 @@ void AlarmPage::alarmOff() {
         ui->alarmOff->setText("ALARM IS OFF");
     }
     QString a = QString("Alarm");
-    QString b = QString("Alarm is " + QString(alarmOn ? "ON" : "OFF") + " and set to " + alarmTimeToString(alarmTime));
+    QString b = QString("Alarm " + QString(alarmOn ? "ON" : "OFF") + " and set to " + alarmTimeToString(alarmTime));
     tp->setField(a, b);
-    //tp->setField(QString("Alarm"), QString("Alarm is " + QString(alarmOn ? "ON" : "OFF") + " and set to " + alarmTimeToString(alarmTime)));
+    tp->setField(QString("Alarm"), QString("Alarm is " + QString(alarmOn ? "ON" : "OFF") + " and set to " + alarmTimeToString(alarmTime)));
 }
 
 void AlarmPage::plus() {

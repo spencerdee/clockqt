@@ -5,6 +5,7 @@
 #include <QStaticText>
 #include <QTimer>
 #include <QMap>
+#include <QPainter>
 
 namespace Ui {
 class TickerPage;
@@ -44,6 +45,7 @@ private:
     int scrollPos;
     QImage buffer;
     QTimer* timer;
+    QPainter painter;
 
 private slots:
     virtual void timeout();

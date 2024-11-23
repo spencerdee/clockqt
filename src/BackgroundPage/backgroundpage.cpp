@@ -19,7 +19,7 @@ BackgroundPage::BackgroundPage(QWidget *parent)
     vbl = new QVBoxLayout;
 
     buttons = QList<QPushButton*>();
-    for (const auto & entry : std::filesystem::directory_iterator("Debug/images")) {
+    for (const auto & entry : std::filesystem::directory_iterator("images")) {
         QPushButton* button = new QPushButton();
         button->setFixedHeight(50);
         button->setText(QString::fromStdString(entry.path().filename().string()));

@@ -8,8 +8,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     backgroundPath = "";
 
-    setWindowState(Qt::WindowMaximized);
-    setFixedSize(size());
+    // setWindowState(Qt::WindowMaximized);
+    // setFixedSize(size());
 
     cp = new ClockPage;
     mp = new MenuPage;
@@ -38,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(bp->getUi()->clock, &QPushButton::clicked, this, &MainWindow::clockPressed);
 
     for (QPushButton* button : bp->getButtons()) {
-        connect(button, &QPushButton::clicked, this, [this, button](){setBackground(QString("Debug/images/" + button->text()));});
+        connect(button, &QPushButton::clicked, this, [this, button](){setBackground(QString("images/" + button->text()));});
     }
     addToTicker("Alarm", QString("Alarm is " + QString(ap->getAlarmStatus() ? "ON" : "OFF") + " and set to " + ap->getAlarmTime()));
 }
