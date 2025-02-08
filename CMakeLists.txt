@@ -107,3 +107,12 @@ file(COPY ${CMAKE_SOURCE_DIR}/src/images DESTINATION ${CMAKE_BUILD_EXE_DIR}/)
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(clockqt)
 endif()
+
+set(MAIN_CFLAGS)
+get_target_property(MAIN_CFLAGS clockqt COMPILE_OPTIONS)
+# also see: COMPILE_DEFINITIONS INCLUDE_DIRECTORIES
+message("-- Target compiler flags are: ${MAIN_CFLAGS}")
+
+# cmake -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH="/usr/bin/gcc" -DCMAKE_CXX_COMPILER:FILEPATH="/usr/bin/g++" --no-warn-unused-cli -SC:"/home/pi/Desktop/Clock/clockqt" -Bc:"/home/pi/Desktop/Clock/clockqt/build"
+# cmake --build /home/pi/Desktop/Clock/clockqt/build --config Debug --target clockqt -j 22 --
+# cmake --build /home/pi/Desktop/Clock/clockqt/build --config Debug --target all
