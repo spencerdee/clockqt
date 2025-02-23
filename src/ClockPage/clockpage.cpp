@@ -50,8 +50,12 @@ void ClockPage::updateTime() {
         getCurrentTime(&tm);
 
         std::stringstream bTime;
-        bTime << std::put_time(&tm, "%H:%M:%S %p");
+        bTime << std::put_time(&tm, "%I:%M:%S %p");
         time = QString::fromStdString(bTime.str());
+        if (time[0] == '0') {
+            time = time.mid(1);
+        }
+
         ui->time->setText(QString("%1").arg(time));
 
         // std::stringstream bDate;
@@ -61,5 +65,4 @@ void ClockPage::updateTime() {
     }
 
     update();
-    //clockOn = false;
 }

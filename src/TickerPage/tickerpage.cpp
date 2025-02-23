@@ -1,6 +1,7 @@
 #include "tickerpage.h"
 #include <QDebug>
 #include <QPainter>
+#include <qcolor.h>
 
 TickerPage::TickerPage(QWidget *parent, QString text) :
     QWidget(parent), scrollPos(0)
@@ -76,6 +77,9 @@ void TickerPage::paintEvent(QPaintEvent*)
 
         if(x < windowWidth)
         {
+            pb.setBrush(QColor(0, 0, 0, 0.4 * 255));
+            QRect rect(QPoint(x, (height() - wholeTextSize.height()) / 2) + QPoint(0,0), wholeTextSize);
+            pb.drawRect(rect);
             pb.drawStaticText(QPointF(x, (height() - wholeTextSize.height()) / 2) + QPoint(0,0), staticText);
             x += wholeTextSize.width();
 

@@ -8,7 +8,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     backgroundPath = "";
 
-    // setWindowState(Qt::WindowMaximized);
+    setWindowState(Qt::WindowMaximized);
+    this->setWindowFlags(windowFlags() & ~Qt::FramelessWindowHint);
+    // show();
     // setFixedSize(size());
 
     cp = new ClockPage;
