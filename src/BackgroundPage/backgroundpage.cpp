@@ -31,15 +31,7 @@ BackgroundPage::BackgroundPage(QWidget *parent)
         vbl->addWidget(button);
         buttons.append(button);
     }
-
-    // for (const auto & entry : std::filesystem::directory_iterator("images")) {
-    //     QPushButton* button = new QPushButton();
-    //     button->setFixedHeight(50);
-    //     button->setText(QString::fromStdString(entry.path().filename().string()));
-    //     button->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
-    //     vbl->addWidget(button);
-    //     buttons.append(button);
-    // }
+    
     gb->setLayout(vbl);
     ui->scrollArea->setWidget(gb);
 }

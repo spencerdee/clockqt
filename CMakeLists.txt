@@ -47,6 +47,8 @@ set(PROJECT_SOURCES
 qt_add_executable(clockqt MANUAL_FINALIZATION ${PROJECT_SOURCES})
 target_link_libraries(clockqt PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
+target_compile_options(clockqt PRIVATE --std=c++17 -lstdc++fs)
+
 set_target_properties(clockqt PROPERTIES
     ${BUNDLE_ID_OPTION}
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BUILD_EXE_DIR}
@@ -73,8 +75,6 @@ install(TARGETS clockqt
     LIBRARY DESTINATION ${CMAKE_BUILD_EXE_DIR}
     RUNTIME DESTINATION ${CMAKE_BUILD_EXE_DIR}
 )
-
-message(STATUS ${CMAKE_BUILD_EXE_DIR})
 
 file(COPY ${CMAKE_SOURCE_DIR}/src/images DESTINATION ${CMAKE_BUILD_EXE_DIR}/)
 
