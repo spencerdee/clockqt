@@ -44,7 +44,7 @@ set(PROJECT_SOURCES
         src/Common/common.cpp
 )
 
-qt_add_executable(clockqt MANUAL_FINALIZATION ${PROJECT_SOURCES})
+add_executable(clockqt ${PROJECT_SOURCES})
 target_link_libraries(clockqt PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
 target_compile_options(clockqt PRIVATE --std=c++17 -lstdc++fs)
