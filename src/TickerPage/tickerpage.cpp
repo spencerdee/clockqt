@@ -71,6 +71,7 @@ void TickerPage::paintEvent(QPaintEvent*)
         buffer.fill(qRgba(0, 0 ,0, 0));
         QPainter pb(&buffer);
         pb.setPen(painter.pen());
+        pb.setPen(Qt::white);
         pb.setFont(painter.font());
 
         int x = qMin(-i, 0) + windowWidth;
