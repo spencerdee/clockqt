@@ -58,10 +58,12 @@ void ClockPage::updateTime() {
 
         ui->time->setText(QString("%1").arg(time));
 
-        // std::stringstream bDate;
-        // bDate << std::put_time(&tm, "%a %b %d %Y");
-        // date = QString::fromStdString(bDate.str());
-        // ui->date->setText(QString("%1").arg(date));
+        bTime << std::put_time(&tm, "%m/%d/%Y");
+
+        std::stringstream bDate;
+        bDate << std::put_time(&tm, "%m/%d/%Y");
+        date = QString::fromStdString(bDate.str());
+        ui->date->setText(QString("%1").arg(date));
     }
 
     update();
