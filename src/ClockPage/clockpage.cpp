@@ -29,6 +29,7 @@ void ClockPage::updateFont() {
     // ui->date->setFont(font);
     font = QFont("Ariel", int(this->width() / 20), QFont::Bold);
     ui->time->setFont(font);
+    ui->date->setFont(font);
 }
 
 void ClockPage::setInterval(int ms) {
