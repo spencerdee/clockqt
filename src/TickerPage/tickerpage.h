@@ -45,7 +45,7 @@ private:
     int scrollPos;
     QImage buffer;
     QTimer* timer;
-    QPainter painter;
+    std::string weatherApiKey;
 
 private slots:
     virtual void timeout();

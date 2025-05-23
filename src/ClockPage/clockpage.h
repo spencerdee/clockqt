@@ -9,7 +9,6 @@
 #include "common.h"
 #include "ui_clockpage.h"
 
-
 namespace Ui {
 class ClockPage;
 }
@@ -34,6 +33,6 @@ private:
     QString time;
     QString date;
     QFont font;
-    bool clockOn;
+    bool clockOn = false;
 };
 #endif // CLOCKPAGE_H

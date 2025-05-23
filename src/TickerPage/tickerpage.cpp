@@ -2,6 +2,8 @@
 #include <QDebug>
 #include <QPainter>
 #include <qcolor.h>
+#include <string>
+#include <fstream>
 
 TickerPage::TickerPage(QWidget *parent, QString text) :
     QWidget(parent), scrollPos(0)
@@ -16,6 +18,27 @@ TickerPage::TickerPage(QWidget *parent, QString text) :
     timer->setInterval(100);
     timer->start();
     setText(text);
+
+    std::ifstream file("api-keys.csv");
+    if (!file.is_open()) {
+        qDebug() << "Could not open file: " << QString::fromStdString("apiFile.csv");
+    }
+    else
+    {
+        std::string line;
+        while (std::getline(file, line))
+        {
+            std::string key = line.substr(0, line.find(","));
+            std::string value = line.substr(line.find(",") + 1);
+            if (key == "weather")
+            {
+                weatherApiKey = value;
+                qDebug() << "Weather API Key: " << QString::fromStdString(weatherApiKey);
+            }
+        }
+    }
+    file.close();
+    // TODO: read in weather api key and implement api calls to show weather in ticker
 }
 
 TickerPage::~TickerPage() {
@@ -52,7 +75,6 @@ void TickerPage::setSeparator(QString separator)
 
 void TickerPage::updateText()
 {
-    singleTextWidth =  fontMetrics().horizontalAdvance(_text);
     timer->stop();
     staticText.setText(_text + _separator);
     staticText.prepare(QTransform(), font());

@@ -76,7 +76,14 @@ install(TARGETS clockqt
     RUNTIME DESTINATION ${CMAKE_BUILD_EXE_DIR}
 )
 
-file(COPY ${CMAKE_SOURCE_DIR}/src/images DESTINATION ${CMAKE_BUILD_EXE_DIR}/)
+if (NOT DEFINED ENV{WEATHER_API_KEY})
+    message(FATAL_ERROR "Please set the WEATHER_API_KEY environment variable.")
+else()
+    set(WEATHER_API_KEY $ENV{WEATHER_API_KEY})
+endif()
+
+file(COPY ${CMAKE_SOURCE_DIR}/resources/images DESTINATION ${CMAKE_BUILD_EXE_DIR}/)
+configure_file(${CMAKE_SOURCE_DIR}/resources/api-keys.csv.in ${CMAKE_BUILD_EXE_DIR}/api-keys.csv @ONLY)
 
 if(QT_VERSION_MAJOR EQUAL ${QT_VERSION})
     qt_finalize_executable(clockqt)

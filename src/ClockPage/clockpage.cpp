@@ -9,7 +9,6 @@ ClockPage::ClockPage(QWidget *parent)
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &ClockPage::updateTime);
     timer->start(1000);
-    clockOn = true;
 }
 
 ClockPage::~ClockPage()
