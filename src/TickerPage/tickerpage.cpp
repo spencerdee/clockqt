@@ -12,7 +12,6 @@ TickerPage::TickerPage(QWidget *parent, QString text) :
     timer = new QTimer();
     staticText.setTextFormat(Qt::PlainText);
     setFixedHeight(fontMetrics().height());
-    leftMargin = width();
     setSeparator(" ");
     connect(timer, &QTimer::timeout, this, &TickerPage::timeout);
     timer->setInterval(100);
@@ -87,15 +86,12 @@ void TickerPage::paintEvent(QPaintEvent*)
     QPainter painter(this);
     int windowWidth = width();
     int i = scrollPos;
+    QImage buffer = QImage(size(), QImage::Format_ARGB32_Premultiplied);
+    buffer.fill(qRgba(0, 0 ,0, 0));
+
+    QPainter pb(&buffer);
+    pb.setPen(Qt::white);
     while(i < windowWidth + wholeTextSize.width()) {
-        buffer = QImage(size(), QImage::Format_ARGB32_Premultiplied);
-
-        buffer.fill(qRgba(0, 0 ,0, 0));
-        QPainter pb(&buffer);
-        pb.setPen(painter.pen());
-        pb.setPen(Qt::white);
-        pb.setFont(painter.font());
-
         int x = qMin(-i, 0) + windowWidth;
 
         if(x < windowWidth)

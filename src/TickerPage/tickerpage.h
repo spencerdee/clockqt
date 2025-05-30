@@ -6,6 +6,7 @@
 #include <QTimer>
 #include <QMap>
 #include <QPainter>
+#include <qpainter.h>
 
 namespace Ui {
 class TickerPage;
@@ -35,17 +36,36 @@ protected:
 
 private:
     void updateText();
+
+    // contains keys and values for adding items to the ticker
     QMap<QString, QString> tickerFields;
+
+    // the text used by the ticker
     QString _text;
+
+    // the separator used to seperate each instance of the ticker
     QString _separator;
+
+    // the combined text and separator to be displayed repeatedly
     QStaticText staticText;
-    int singleTextWidth;
-    QSize wholeTextSize;
-    int leftMargin;
+
+    // cycles through the width of the page so the text appears to scroll
     int scrollPos;
-    QImage buffer;
+
+    // dimensions of the text and separator
+    QSize wholeTextSize;
+
+    // Image object that represents the whole widget
+    // QImage image;
+
+    // timer that managed the scrolling of the text
     QTimer* timer;
+
+    // api key for weather
     std::string weatherApiKey;
+
+    // painter for drawing the text
+    // QPainter* painter;
 
 private slots:
     virtual void timeout();
